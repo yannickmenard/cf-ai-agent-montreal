@@ -1,0 +1,74 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Tell Tailwind: dark mode is controlled by the `.dark` class */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root { --radius: 0.75rem; }
+  html, body, #root { height: 100%; }
+  body { @apply antialiased;
+  font-family: Quicksand, sans-serif; }
+}
+
+/* Light (off-white) vs Dark palettes */
+.bg-app {
+  @apply bg-neutral-50 text-neutral-900      /* light */
+         dark:bg-neutral-950 dark:text-neutral-100; /* dark */
+}
+
+/* Chat panel surface */
+.card-surface {
+  @apply rounded-3xl border bg-white/80 backdrop-blur-sm
+         border-neutral-200
+         dark:bg-neutral-900/60 dark:border-neutral-800;
+}
+
+/* Scrolling + Markdown */
+.chat-scroll { scroll-behavior: smooth; }
+
+@layer components {
+  /* Light-mode: make bubbles dark gray with white text.
+     Dark mode is preserved by the per-role selectors below. */
+  .bubble {
+    @apply max-w-[85%] rounded-3xl px-4 py-3 text-sm
+           bg-neutral-700 text-white border border-neutral-600
+           dark:border-transparent;
+  }
+
+  /* Keep your corner shapes */
+  .bubble-user { @apply rounded-br-md; }
+  .bubble-assistant { @apply rounded-bl-md; }
+
+  /* Dark mode: preserve your previous look 1:1 */
+  .dark .bubble-user {
+    @apply bg-neutral-800 text-neutral-100 border-transparent;
+  }
+  .dark .bubble-assistant {
+    @apply bg-neutral-900/60 text-neutral-100 border border-neutral-800;
+  }
+
+  /* Typography plugin was forcing dark text in light mode inside bubbles.
+     Force inverted prose inside bubbles so text is white. */
+  .bubble .prose-chat { @apply prose-invert; }
+
+  /* (Optional) Make links readable and consistent */
+  .prose-chat a { text-decoration: underline; }
+}
+
+/* Light/dark base rules stay as you had them */
+
+@layer components {
+  .chat-input {
+    @apply bg-neutral-700 text-white border border-neutral-600
+           dark:bg-neutral-900 dark:text-neutral-100 dark:border-neutral-800;
+  }
+  .chat-input textarea,
+  .chat-input select,
+  .chat-input input {
+    @apply text-white placeholder:text-neutral-300
+           dark:text-neutral-100 dark:placeholder:text-neutral-400;
+  }
+  /* So dropdown items are readable when opened */
+  .chat-input option { @apply text-neutral-900; }
+}

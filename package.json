@@ -1,0 +1,45 @@
+{
+	"name": "cf-ai-agent-montreal",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"lint": "eslint .",
+		"preview": "npm run build && vite preview",
+		"deploy": "npm run build && wrangler deploy",
+		"cf-typegen": "wrangler types"
+	},
+	"dependencies": {
+		"@cloudflare/ai-utils": "^1.0.1",
+		"@cloudflare/puppeteer": "^1.0.4",
+		"@tailwindcss/vite": "^4.1.12",
+		"agents": "^0.0.113",
+		"clsx": "^2.1.1",
+		"lucide-react": "^0.460.0",
+		"react": "^19.1.1",
+		"react-dom": "^19.1.1",
+		"react-markdown": "^9.0.3",
+		"remark-gfm": "^4.0.0"
+	},
+	"devDependencies": {
+		"@cloudflare/vite-plugin": "^1.12.2",
+		"@cloudflare/workers-types": "^4.20250903.0",
+		"@eslint/js": "^9.33.0",
+		"@tailwindcss/typography": "^0.5.15",
+		"@types/react": "^19.1.10",
+		"@types/react-dom": "^19.1.7",
+		"@vitejs/plugin-react": "^5.0.0",
+		"class-variance-authority": "^0.7.0",
+		"eslint": "^9.33.0",
+		"eslint-plugin-react-hooks": "^5.2.0",
+		"eslint-plugin-react-refresh": "^0.4.20",
+		"globals": "^16.3.0",
+		"tailwindcss": "^4.1.12",
+		"typescript": "~5.8.3",
+		"typescript-eslint": "^8.39.1",
+		"vite": "^7.1.2",
+		"wrangler": "^4.33.2"
+	}
+}
